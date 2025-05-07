@@ -7,8 +7,8 @@ from pathlib import Path
 
 # Physical parameters
 INCH = 0.0254           # m per inch
-thickness = 1.5 * INCH  # clip thickness in m
-width = 0.09            # display width in m
+height = 4 * INCH  # clip height in m
+width = 0.2 * INCH            # display width in m
 rho = 3510              # kg/m³
 cp = 515                # J/kg·K
 kappa = 2000            # W/m·K
@@ -18,9 +18,9 @@ T_amb = 27.0            # °C
 T_max = 500.0           # °C
 total_time = 4.0        # s
 
-# Discretization in thickness (1D conduction)
+# Discretization in height (1D conduction)
 dy = 0.0005             # 0.5 mm
-Ny = int(thickness / dy) + 1
+Ny = int(height / dy) + 1
 
 # Horizontal replication dimension
 Nx = 100
@@ -45,7 +45,7 @@ T1d = np.full(Ny, T_amb)
 T_buf = np.empty_like(T1d)
 
 # Prepare mesh for imshow
-y = np.linspace(0, thickness, Ny)
+y = np.linspace(0, height, Ny)
 x = np.linspace(0, width_display, Nx)
 X, Y = np.meshgrid(x, y)
 
@@ -57,12 +57,13 @@ im = ax.imshow(
     cmap='plasma',
     vmin=T_amb,
     vmax=T_max,
-    extent=[0, width_display, 0, thickness],
+    extent=[0, width_display, 0, height],
     aspect='auto'
 )
 cbar = fig.colorbar(im, ax=ax, label='Temperature (°C)')
+cbar.ax.invert_yaxis()
 ax.set_xlabel('Width (m)')
-ax.set_ylabel('Thickness (m)')
+ax.set_ylabel('height (m)')
 
 def update(step):
     # step is the simulation index
