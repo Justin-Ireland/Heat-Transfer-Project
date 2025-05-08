@@ -15,12 +15,13 @@ Ny = int(thickness / dy) + 1
 
 T_initial = 27.0
 T_target  = 500.0
-q_flux    = 8.785e6    # W/m²
+q_flux    = 11.785e6    # W/m²
 
 # ------------------------------------------------------------
 # 2. Material Properties Database
 # ------------------------------------------------------------
 materials = {
+    "Diamond": {"k": 1000, "cp": 515, "rho": 3510},
     "Steel (AISI 1010)": {"k":  63.9, "cp": 434, "rho": 7832},
     "Aluminum 2024-T6": {"k": 177.0, "cp": 875, "rho": 2770},
     "Durasteel":         {"k":  25.0, "cp": 535, "rho": 8300},
