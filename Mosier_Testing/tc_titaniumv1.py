@@ -27,7 +27,8 @@ materials = {
     "Durasteel":         {"k":  25.0, "cp": 535, "rho": 8300},
     "Brass (Cart.)":     {"k": 110.0, "cp": 380, "rho": 8530},
     "Titanium":          {"k":  21.9, "cp": 522, "rho": 4500},
-    "Nickel":            {"k":  90.7, "cp": 444, "rho": 8900}
+    "Nickel":            {"k":  90.7, "cp": 444, "rho": 8900},
+    "Silicon":           {"k": 429, "cp": 235, "rho": 10500}
 }
 
 # ------------------------------------------------------------
@@ -146,10 +147,10 @@ im = ax.imshow(T, origin='lower',
                cmap='plasma', vmin=T_initial, vmax=T_target,
                extent=[0, width, 0, thickness], aspect='auto')
 fig.colorbar(im, ax=ax, label='Temperature (°C)')
-ax.set_title(f'Steady-state (t={time:.2f}s)')
+ax.set_title(f'Last Frame (t={time:.2f}s)')
 ax.set_xlabel('Width (m)')
 ax.set_ylabel('Thickness (m)')
-png_path = Path.cwd() / f"steady_state_3sided_{mname.replace(' ','_')}.png"
+png_path = Path.cwd() / f"last_frame_3sided_{mname.replace(' ','_')}.png"
 fig.savefig(png_path, dpi=150, bbox_inches='tight')
 plt.show()
 print(f"✅ Steady-state image saved to {png_path}")
